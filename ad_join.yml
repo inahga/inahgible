@@ -1,0 +1,49 @@
+---
+- name: Join Linux machine to Active Directory
+  hosts: all
+  remote_user: root
+  gather_facts: no
+  
+  vars_prompt:
+    - name: ad_realm
+      prompt: "Domain"
+      private: no
+      default: "intranet.inahga.org"
+    - name: ad_ou
+      prompt: "Organizational Unit"
+      private: no
+      default: "OU=Linux,OU=Servers,OU=Devices,DC=intranet,DC=inahga,DC=org"
+    - name: ad_username
+      prompt: "AD username (without domain name!)"
+      private: no
+    - name: ad_password
+      prompt: "Password"
+      private: yes
+      unsafe: yes
+
+  tasks:
+    - name: Install packages
+      package:
+        name:
+          - realmd
+          - sssd
+          - oddjob
+          - oddjob-mkhomedir
+          - adcli
+        state: present
+
+    - name: Enable services
+      service: 
+        name: sssd
+        enabled: yes
+        state: started
+      
+    - name: Enable realmd
+      service:
+        name: realmd
+        enabled: yes
+        state: started
+
+    - name: Join realm
+      shell: /bin/echo '{{ ad_password }}' | /usr/sbin/realm join --membership-software=adcli --computer-ou "{{ ad_ou }} " --user {{ ad_username }} {{ ad_realm }}
+      no_log: true
