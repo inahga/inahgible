@@ -6,7 +6,7 @@
     key: https://packages.microsoft.com/keys/microsoft.asc
 - name: install microsoft repository
   yum_repository:
-    name: packages-microsoft-com-prod
+    name: microsoft
     baseurl: https://packages.microsoft.com/rhel/7/prod/
     enabled: yes
     gpgcheck: yes
