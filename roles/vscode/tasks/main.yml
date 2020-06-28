@@ -1,0 +1,19 @@
+---
+# tasks file for vscode
+- name: install vscode signing key
+  rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+- name: install vscode repo
+  yum_repository:
+    name: vscode
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    description: Visual Studio Code
+    state: present
+- name: install vscode
+  package:
+    name: code
+    state: present

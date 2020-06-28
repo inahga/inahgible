@@ -11,7 +11,7 @@
     enabled: yes
     gpgcheck: yes
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-    description: Microsoft RHEL Packages
+    description: packages-microsoft-com-prod
     state: present
 - name: install powershell
   package:
