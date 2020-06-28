@@ -1,0 +1,8 @@
+---
+# handlers file for gnome-workstation
+- name: update dconf
+  command: /usr/bin/dconf update
+- name: apply gtk.css
+  shell: for D in $(ls /home); do cp /usr/share/gtk-3.0/gtk.css /home/$D/.config/gtk-3.0/gtk.css; chown $D:$D /home/$D/.config/gtk-3.0/gtk.css; done
+  args:
+    executable: /bin/bash

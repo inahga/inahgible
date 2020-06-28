@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/fedora31"
+  config.vm.synced_folder "../../", "/vagrant_data"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+  end
+  config.vm.provision "shell", inline: <<-SHELL
+    dnf groupinstall -y --allowerasing "Fedora Workstation"
+    dnf install -y ansible
+    systemctl set-default graphical.target
+    reboot
+  SHELL
+end
