@@ -12,8 +12,8 @@
   copy:
     src: 00_site_settings
     dest: /etc/dconf/db/site.d/00_site_settings
-  notify: 
-    - update dconf
+- name: update dconf
+  command: /usr/bin/dconf update
 - name: ensure skel directory exists
   file:
     path: /etc/skel/.config/gtk-3.0
@@ -22,8 +22,10 @@
   copy:
     src: gtk.css
     dest: /etc/skel/.config/gtk-3.0/gtk.css
-  notify:
-    - apply gtk.css
+- name: apply gtk.css
+  shell: for D in $(ls /home); do mkdir -p /home/$D/.config/gtk-3.0; cp /etc/skel/.config/gtk-3.0/gtk.css /home/$D/.config/gtk-3.0/gtk.css; chown -R $D:$D /home/$D/.config; done
+  args:
+    executable: /bin/bash
 - name: gedit sucks
   replace:
     path: "{{ item }}"
