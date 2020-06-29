@@ -14,10 +14,14 @@
     dest: /etc/dconf/db/site.d/00_site_settings
   notify: 
     - update dconf
+- name: ensure skel directory exists
+  file:
+    path: /etc/skel/.config/gtk-3.0
+    state: directory
 - name: import gtk.css
   copy:
     src: gtk.css
-    dest: /usr/share/gtk-3.0/gtk.css
+    dest: /etc/skel/.config/gtk-3.0/gtk.css
   notify:
     - apply gtk.css
 - name: gedit sucks
