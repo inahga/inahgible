@@ -1,0 +1,54 @@
+---
+- name: inahga's workstation
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  roles:
+    - gnome-workstation
+    - hashicorp
+    - powershell
+    - snap-apps
+    - vscode
+  tasks:
+    - name: install rpmfusion
+      yum:
+        name: 
+          - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
+          - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm
+        state: present
+    - name: install packages
+      package:
+        name:
+          - compat-ffmpeg28
+          - thunderbird
+          - remmina
+          - krita
+          - libreoffice
+          - golang
+          - g++
+          - mozilla-ublock-origin
+        state: present
+    - name: vimrc
+      get_url:
+        url: https://gitlab.inahga.org/snippets/12/raw
+        dest: /home/aghani/.vimrc
+        group: aghani
+        owner: aghani
+        validate_certs: no
+    - name: vscode settings folder
+      file:
+        path: /home/aghani/.config/Code/User
+        owner: aghani
+        group: aghani
+        state: directory
+    - name: vscode settings.json
+      get_url:
+        url: https://gitlab.inahga.org/snippets/18/raw
+        dest: /home/aghani/.config/Code/User/settings.json
+        group: aghani
+        owner: aghani
+        validate_certs: no
+    - name: vscode vim
+      command: /usr/bin/code --install-extension vscodevim.vim
+      become: yes
+      become_user: aghani

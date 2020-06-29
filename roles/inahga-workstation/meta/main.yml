@@ -1,6 +1,0 @@
-dependencies:
-  - role: gnome-workstation
-  - role: hashicorp
-  - role: powershell
-  - role: snap-apps
-  - role: vscode
