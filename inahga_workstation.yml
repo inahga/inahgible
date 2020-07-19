@@ -27,6 +27,7 @@
           - golang
           - g++
           - mozilla-ublock-origin
+          - mozilla-https-everywhere
           - VirtualBox
         state: present
     - name: vimrc
