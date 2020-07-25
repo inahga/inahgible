@@ -14,7 +14,7 @@ default-folder-viewer='list-view'
 
 [org/gnome/shell]
 enabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'horizontal-workspaces@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'activities-config@nls1729', 'dash-to-dock@micxgx.gmail.com']
-favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'mozilla-thunderbird.desktop', 'org.remmina.Remmina.desktop', 'spotify_spotify.desktop', 'discord_discord.desktop']
+favorite-apps=['firefox.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'nvim.desktop', 'org.gnome.Nautilus.desktop', 'mozilla-thunderbird.desktop', 'org.remmina.Remmina.desktop', 'spotify_spotify.desktop', 'discord_discord.desktop', 'org.kde.krita.desktop']
 
 [org/gnome/shell/extensions/activities-config]
 activities-config-button-icon-path='/usr/share/gnome-shell/extensions/activities-config@nls1729/face-smile-3.svg'
