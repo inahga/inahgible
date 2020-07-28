@@ -5,10 +5,13 @@ show-battery-percentage=true
 [org/gnome/desktop/input-sources]
 xkb-options=['caps:swapescape']
 
+[org/gnome/desktop/peripherals/touchpad]
+natural-scroll=false
+
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
 
-[org/gnome/nautilus/icon-view]
+[org/gnome/nautilus/list-view]
 default-zoom-level='small'
 
 [org/gnome/nautilus/preferences]
@@ -54,7 +57,7 @@ extend-height=false
 force-straight-corner=false
 height-fraction=0.90000000000000002
 icon-size-fixed=false
-intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+intellihide-mode='ALL_WINDOWS'
 middle-click-action='launch'
 multi-monitor=false
 preferred-monitor=0
