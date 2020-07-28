@@ -1,0 +1,66 @@
+---
+- name: apply dconf settings
+  copy:
+    src: 00_site_settings
+    dest: /etc/dconf/db/site.d/00_site_settings
+  register: dconf
+
+- name: update dconf (reboot required if applied)
+  command: /usr/bin/dconf update
+  when: dconf.changed
+
+- name: apply gtk.css (reboot required if applied)
+  copy:
+    src: gtk.css
+    dest: /home/{{ apply_username }}/.config/gtk-3.0/gtk.css
+    group: "{{ apply_username }}"
+    owner: "{{ apply_username }}"
+
+- name: gedit sucks
+  replace:
+    path: "{{ item }}"
+    regexp: 'org.gnome.gedit.desktop'
+    replace: 'nvim.desktop'
+  loop:
+    - /usr/share/applications/mimeapps.list
+    - /usr/share/applications/gnome-mimeapps.list
+
+- name: vimrc
+  copy:
+    src: .vimrc
+    dest: /home/{{ apply_username }}/.vimrc
+    group: "{{ apply_username }}"
+    owner: "{{ apply_username }}"
+
+- name: vscode settings folder
+  file:
+    path: /home/{{ apply_username }}/.config/Code/User
+    owner: "{{ apply_username }}" 
+    group: "{{ apply_username }}"
+    state: directory
+
+- name: vscode settings.json
+  copy:
+    src: settings.json
+    dest: /home/{{ apply_username }}/.config/Code/User/settings.json
+    group: "{{ apply_username }}"
+    owner: "{{ apply_username }}"
+
+- name: vscode keybindings.json
+  copy:
+    src: keybindings.json
+    dest: /home/{{ apply_username }}/.config/Code/User/keybindings.json
+    group: "{{ apply_username }}"
+    owner: "{{ apply_username }}"
+
+- name: vscode vim
+  command: /usr/bin/code --install-extension vscodevim.vim
+  become: yes
+  become_user: "{{ apply_username }}"
+
+- name: bash aliases
+  lineinfile:
+    dest: /home/{{ apply_username }}/.bashrc
+    line: "alias {{ item.alias }}='{{ item.command }}'"
+    regexp: "^alias {{ item.alias }}="
+  with_items: "{{ bash_aliases }}"

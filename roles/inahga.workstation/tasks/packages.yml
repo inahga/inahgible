@@ -1,0 +1,44 @@
+---
+- name: install rpmfusion
+  yum:
+    name: 
+      - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
+      - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm
+    state: present
+
+- name: install packages
+  package:
+    name:
+      - compat-ffmpeg28
+      - thunderbird
+      - remmina
+      - krita
+      - libreoffice
+      - golang
+      - g++
+      - mozilla-ublock-origin
+      - mozilla-https-everywhere
+      - VirtualBox
+      - neovim
+      - gnome-tweak-tool
+      - gnome-shell-extension-activities-configurator
+      - gnome-shell-extension-dash-to-dock
+    state: present
+
+- name: install snapd
+  package:
+    name: snapd
+    state: present
+
+- name: enable snapd
+  service:
+    name: snapd
+    enabled: yes
+    state: started
+
+- name: install snap apps
+  snap:
+    name:
+      - discord
+      - spotify
+    state: present

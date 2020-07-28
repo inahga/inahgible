@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: hashicorp
+  - role: powershell
+  - role: vscode

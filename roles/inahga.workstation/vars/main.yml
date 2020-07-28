@@ -1,0 +1,16 @@
+---
+bash_aliases:
+  - alias: ll
+    command: ls -Gla
+  - alias: l
+    command: ls -Gl
+  - alias: dir
+    command: ls
+  - alias: fzf
+    command: reverse
+  - alias: k
+    command: kubectl
+  - alias: d
+    command: docker
+  - alias: gs
+    command: git status

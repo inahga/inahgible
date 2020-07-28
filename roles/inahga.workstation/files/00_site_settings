@@ -2,6 +2,9 @@
 gtk-theme='Adwaita-dark'
 show-battery-percentage=true
 
+[org/gnome/desktop/input-sources]
+xkb-options=['caps:swapescape']
+
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
 
