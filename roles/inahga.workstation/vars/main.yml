@@ -14,3 +14,5 @@ bash_aliases:
     command: docker
   - alias: gs
     command: git status
+  - alias: gp
+    command: git pull
