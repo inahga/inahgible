@@ -1,21 +1,3 @@
 ---
-# tasks file for powershell
-- name: install microsoft signing key
-  rpm_key:
-    state: present
-    key: https://packages.microsoft.com/keys/microsoft.asc
-- name: install microsoft repository
-  yum_repository:
-    name: microsoft
-    baseurl: https://packages.microsoft.com/rhel/7/prod/
-    enabled: yes
-    gpgcheck: yes
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-    description: packages-microsoft-com-prod
-    state: present
-- name: install powershell
-  package:
-    name:
-      - powershell
-      - compat-openssl10
-    state: present
+- include: tasks.yml
+  become: yes

@@ -2,7 +2,6 @@
 - name: inahga's workstation
   hosts: 127.0.0.1
   connection: local
-  become: yes
   roles:
     - role: inahga.workstation
       apply_username: aghani

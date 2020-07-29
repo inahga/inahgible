@@ -4,30 +4,26 @@
     src: 00_site_settings
     dest: /etc/dconf/db/site.d/00_site_settings
   register: dconf
+  become: yes
 
 - name: update dconf
   command: /usr/bin/dconf update
   when: dconf.changed
+  become: yes
 
 - name: reset dconf
   shell: /usr/bin/dconf reset -f /
-  become: yes
-  become_user: "{{ apply_username }}"
   when: dconf.changed
 
 - name: vscode settings folder
   file:
     path: /home/{{ apply_username }}/.config/Code/User
-    owner: "{{ apply_username }}" 
-    group: "{{ apply_username }}"
     state: directory
 
 - name: apply home dir files
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    group: "{{ apply_username }}"
-    owner: "{{ apply_username }}"
   with_items: "{{ files }}"
 
 - name: gedit sucks
@@ -38,11 +34,10 @@
   loop:
     - /usr/share/applications/mimeapps.list
     - /usr/share/applications/gnome-mimeapps.list
+  become: yes
 
 - name: vscode vim
   command: /usr/bin/code --install-extension vscodevim.vim
-  become: yes
-  become_user: "{{ apply_username }}"
 
 - name: bash aliases
   lineinfile:
