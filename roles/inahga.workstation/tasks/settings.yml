@@ -10,7 +10,7 @@
   when: dconf.changed
 
 - name: reset dconf
-  command: /usr/bin/dconf reset -f /
+  shell: /usr/bin/dconf reset -f /
   become: yes
   become_user: "{{ apply_username }}"
   when: dconf.changed
