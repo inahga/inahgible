@@ -7,7 +7,7 @@ bash_aliases:
   - alias: dir
     command: ls
   - alias: fzf
-    command: reverse
+    command: fzf --reverse
   - alias: k
     command: kubectl
   - alias: d
@@ -16,3 +16,12 @@ bash_aliases:
     command: git status
   - alias: gp
     command: git pull
+files:
+  - src: gtk.css
+    dest: /home/{{ apply_username }}/.config/gtk-3.0/gtk.css
+  - src: .vimrc
+    dest: /home/{{ apply_username }}/.vimrc
+  - src: settings.json
+    dest: /home/{{ apply_username }}/.config/Code/User/settings.json    
+  - src: keybindings.json
+    dest: /home/{{ apply_username }}/.config/Code/User/keybindings.json
