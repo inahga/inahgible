@@ -16,6 +16,8 @@ bash_aliases:
     command: git status
   - alias: gp
     command: git pull
+  - alias: tf
+    command: terraform
 files:
   - src: gtk.css
     dest: /home/{{ apply_username }}/.config/gtk-3.0/gtk.css
