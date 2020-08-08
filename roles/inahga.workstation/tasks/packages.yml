@@ -26,6 +26,12 @@
       - awscli
     state: present
 
+- name: remove packages
+  package:
+    name:
+      - VirtualBox
+    state: absent
+
 - name: install snapd
   package:
     name: snapd
