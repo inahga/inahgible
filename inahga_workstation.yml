@@ -1,4 +1,6 @@
 ---
+# Run with `ansible-playbook inahga_workstation.yml --ask-become-pass`
+# Don't run as sudo, because gconf modifications rely on being apply_username
 - name: inahga's workstation
   hosts: 127.0.0.1
   connection: local
