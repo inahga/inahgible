@@ -18,12 +18,12 @@
       - g++
       - mozilla-ublock-origin
       - mozilla-https-everywhere
-      - VirtualBox
       - neovim
       - gnome-tweak-tool
       - gnome-shell-extension-activities-configurator
       - gnome-shell-extension-dash-to-dock
       - awscli
+      - chromium
     state: present
 
 - name: remove packages
