@@ -1,3 +1,3 @@
-# inahga.org Ansible
+# Ansible Collection - inahga.inahga
 
-A repo for some common Ansible roles and playbooks.
+Documentation for the collection.
