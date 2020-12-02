@@ -1,0 +1,13 @@
+- name: run DNF weekly
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Update weekly
+      cron:
+        name: dnf cron
+        job: "dnf update -y"
+        minute: "0"
+        hour: "0"
+        weekday: "5"
+        user: root

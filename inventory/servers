@@ -1,0 +1,3 @@
+[servers]
+gitlab.dmz.inahga.org ansible_user=aghani
+minecraft.dmz.inahga.org ansible_user=aghani
